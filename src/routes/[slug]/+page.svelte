@@ -55,6 +55,11 @@
     }
 </script>
 
+<svelte:head>
+    <title>{data.slug.slice(0, 4).toUpperCase() + ' N' + data.slug.slice(data.slug.length - 1)} Kanji — JLPT Kanji</title>
+    <meta property="og:title" content="{data.slug.slice(0, 4).toUpperCase() + ' N' + data.slug.slice(data.slug.length - 1)} Kanji" />
+</svelte:head>
+
 <div class="flex items-center gap-4 pb-2">
     <p class="text-amber-500"><b>{filteredKanji.length} kanji</b></p>
     <button

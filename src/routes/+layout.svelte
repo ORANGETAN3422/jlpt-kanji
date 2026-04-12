@@ -1,13 +1,24 @@
 <script lang="ts">
 	import './layout.css';
-	import favicon from '$lib/assets/favicon.svg';
+	import favicon from '$lib/assets/cube_23.png';
 	import { page } from '$app/state';
 	import { resolve } from '$app/paths';
 
 	let { children } = $props();
 </script>
 
-<svelte:head><link rel="icon" href={favicon} /></svelte:head>
+<svelte:head>
+    <link rel="icon" href={favicon} />
+    <title>JLPT Kanji</title>
+    <meta name="description" content="Track your kanji progress across all JLPT levels. View stroke order, readings, meanings and example words." />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="JLPT Kanji" />
+    <meta property="og:description" content="Track your kanji progress across all JLPT levels. View stroke order, readings, meanings and example words." />
+    <meta property="og:type" content="website" />
+
+    <meta name="theme-color" content="#1e2433" />
+</svelte:head>
 <nav class="flex items-center justify-between px-6 py-4 border-b border-amber-300/10" style="background-color: #1a1f2e;">
     <div class="flex items-center">
         <a href={resolve('/')} class="text-amber-300/80 font-semibold tracking-widest uppercase text-sm">JLPT Kanji</a>
