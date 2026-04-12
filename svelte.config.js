@@ -7,7 +7,7 @@ const config = {
 		runes: ({ filename }) => filename.split(/[/\\]/).includes('node_modules') ? undefined : true
 	},
 	kit: { adapter: adapter() },
-	paths: {base: "/jlpt-kanji/"}git
+	paths: {base: "/jlpt-kanji/"}
 };
 
 export default config;

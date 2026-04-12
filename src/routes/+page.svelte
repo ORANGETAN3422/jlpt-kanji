@@ -100,6 +100,6 @@
 <p class="text-slate-500 text-sm">
     Built with 
     <a href="https://svelte.dev" target="_blank" class="underline text-sky-500">Svelte</a>, 
-    <a href="https://kit.svelte.dev" target="_blank" class="underline text-sky-500">SvelteKit</a> 
+    <a href="https://svelte.dev" target="_blank" class="underline text-sky-500">SvelteKit</a> 
     and <a href="https://tailwindcss.com" target="_blank" class="underline text-sky-500">tailwindcss</a>.
 </p>
