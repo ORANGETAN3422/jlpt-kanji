@@ -3,6 +3,14 @@ export interface jlptKanjiResponse {
     kanji: string[];
 }
 
+export interface homepageData {
+    jlpt1: string[];
+    jlpt2: string[];
+    jlpt3: string[];
+    jlpt4: string[];
+    jlpt5: string[];
+}
+
 export interface kanjiInfo {
   freq_mainichi_shinbun: number
   grade: number

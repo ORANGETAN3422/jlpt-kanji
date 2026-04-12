@@ -1,7 +1,25 @@
 <script lang="ts">
     import type { kanjiInfo } from "$lib/types";
+    import { addToLearnedKanji, removeFromLearnedKanji, getLearnedKanji } from "$lib/storage";
 
    let { data } : { data: kanjiInfo; } = $props();
+
+   let learned = $state(false);
+
+    $effect(() => {
+         const learnedKanji = getLearnedKanji();
+         learned = learnedKanji.includes(data.kanji);
+    });
+
+   function toggleLearned() {
+       if (!learned) {
+           addToLearnedKanji(data.kanji);
+           learned = true;
+       } else {
+           removeFromLearnedKanji(data.kanji);
+           learned = false;
+       }
+   }
 
    function gradeLabel(grade: number | null): string {
         if (grade === null) return 'Non-Jōyō';
@@ -40,7 +58,7 @@
 
         const paths = svgContainer.querySelectorAll<SVGPathElement>('path');
         const texts = svgContainer.querySelectorAll<SVGTextElement>('text');
-        const STROKE_DURATION = 0.4;
+        const STROKE_DURATION = 0.5;
 
         texts.forEach(text => {
             text.style.opacity = '0';
@@ -108,6 +126,12 @@
             <span class="rounded-2xl px-2.5 text-slate-300 {gradeClass(data.grade)}">{gradeLabel(data.grade)}</span>
             <span class="rounded-2xl px-2.5 bg-[#7a5c3a]/60 text-slate-300">{data.stroke_count} strokes</span>
         </div>
+        <button
+            onclick={toggleLearned}
+            class="mt-2 text-xs px-3 py-1 rounded-lg border transition-colors {learned
+                ? 'bg-emerald-900/40 border-emerald-500/60 text-emerald-300 hover:border-emerald-400'
+                : 'bg-slate-700/50 border-slate-500 text-slate-300 hover:border-amber-300/60'}"
+        >{learned ? '✓ Remove from learned' : '+ Mark as learned'}</button>
     </div>
     <div class="flex flex-col items-center gap-2 shrink-0">
         <div class="relative w-28 h-28 border border-amber-300/20">
