@@ -1,6 +1,8 @@
 import { getJlptKanji } from '$lib/api.js';
 import type { jlptKanjiResponse } from '$lib/types.js';
 
+export const prerender = true;
+
 export const load = async ({ fetch }) => {
     const jlpt1: jlptKanjiResponse = await getJlptKanji({ slug: 'jlpt-1', fetch });
     const jlpt2: jlptKanjiResponse = await getJlptKanji({ slug: 'jlpt-2', fetch });
