@@ -1,5 +1,6 @@
 <script lang="ts">
     import KanjiCard from "$lib/components/KanjiCard.svelte";
+    import KanjiWords from "$lib/components/KanjiWords.svelte";
 
 	import type { jlptKanjiResponse, kanjiInfo } from "$lib/types";
     import { getLearnedKanji } from "$lib/storage";
@@ -22,7 +23,7 @@
     const CARD_WIDTH = 52;
     const TARGET_ROWS = 8;
 
-    const filteredKanji = $derived(hideLearned ? data.kanji.filter(k => !getLearnedKanji().includes(k)) : data.kanji);
+    const filteredKanji = $derived(hideLearned ? (data.kanji ?? []).filter(k => !getLearnedKanji().includes(k)) : (data.kanji ?? []));
     const pageSize = $derived(Math.max(1, Math.floor((containerWidth) / (CARD_WIDTH))) * TARGET_ROWS);
     const totalPages = $derived(Math.ceil(filteredKanji.length / pageSize));
     const visibleKanji = $derived(filteredKanji.slice(currentPage * pageSize, (currentPage + 1) * pageSize));
@@ -47,7 +48,7 @@
             cached.push(info);
             loadingKanji = false;
             currentKanji = info;
-            if (updateUrl) replaceState(resolve(`/kanji/${data.slug}?kanji=${kanji}`), {});
+            if (updateUrl) replaceState(resolve(`/${data.slug}?kanji=${kanji}`), {});
         } catch (e) {
             console.error(e);
         }
@@ -95,4 +96,5 @@
     <p class="text-slate-400 mt-6">Loading...</p>
 {:else if currentKanji}
     <KanjiCard data={currentKanji} />
+    <KanjiWords data={currentKanji} />
 {/if}

@@ -7,8 +7,7 @@
    let learned = $state(false);
 
     $effect(() => {
-         const learnedKanji = getLearnedKanji();
-         learned = learnedKanji.includes(data.kanji);
+        learned = getLearnedKanji().includes(data.kanji);
     });
 
    function toggleLearned() {
@@ -116,7 +115,17 @@
 </script>
 
 <div class="mt-6 bg-slate-700/50 border border-amber-300/20 rounded-xl p-6 flex gap-6 items-start">
-    <span class="japanese text-7xl text-white leading-none shrink-0">{data.kanji}</span>
+    <div class="flex flex-col items-center gap-2 shrink-0">
+        <a href={`https://jisho.org/search/${data.kanji}%23kanji`} target="_blank" class="japanese text-7xl text-white leading-none flex items-start gap-1 group">
+            {data.kanji}
+            <svg class="w-4 h-4 text-slate-600 group-hover:text-slate-300 transition-colors shrink-0 mt-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                <polyline points="15 3 21 3 21 9"/>
+                <line x1="10" y1="14" x2="21" y2="3"/>
+            </svg>
+        </a>
+        <span class="japanese text-slate-500 text-xs">#{data.freq_mainichi_shinbun} 毎日新聞</span>
+    </div>
     <div class="flex flex-col gap-2 text-sm flex-1">
         <p class="text-white font-medium">{data.meanings.join(', ')}</p>
         <p class="text-slate-400">On: <span class="text-slate-200">{data.on_readings.join('、')}</span></p>

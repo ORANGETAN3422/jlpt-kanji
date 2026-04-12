@@ -17,7 +17,7 @@
         {/if}
     </div>
     <div class="flex items-center gap-1">
-        {#each [1,2,3,4,5] as n (n)}
+        {#each [5,4,3,2,1] as n (n)}
             <a
                 href={resolve(`/jlpt-${n}`)}
                 class="text-sm px-3 py-1 rounded-lg border transition-colors {page.url.pathname === `/jlpt-n${n}`

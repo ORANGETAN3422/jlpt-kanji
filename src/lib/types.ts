@@ -11,6 +11,27 @@ export interface homepageData {
     jlpt5: string[];
 }
 
+export interface vocabWord {
+    word: string;
+    meaning: string;
+    furigana: string;
+    romaji: string;
+    level: number;
+}
+
+export interface kanjiWordVariant {
+    written: string;
+    pronounced: string;
+    priorities: string[];
+}
+
+export interface kanjiWord {
+    meanings: {
+        glosses: string[];
+    }[];
+    variants: kanjiWordVariant[];
+}
+
 export interface kanjiInfo {
   freq_mainichi_shinbun: number
   grade: number
