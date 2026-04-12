@@ -1,0 +1,19 @@
+export interface jlptKanjiResponse {
+    slug: string;
+    kanji: string[];
+}
+
+export interface kanjiInfo {
+  freq_mainichi_shinbun: number
+  grade: number
+  heisig_en: string
+  jlpt: number
+  kanji: string
+  kun_readings: string[]
+  meanings: string[]
+  name_readings: string[]
+  notes: string[]
+  on_readings: string[]
+  stroke_count: number
+  unicode: string
+}

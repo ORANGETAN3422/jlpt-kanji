@@ -1,1 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap');
 @import 'tailwindcss';
+
+body {
+    background: #0f1117;
+}
+
+.japanese {
+    font-family: 'Noto Sans JP', system-ui;
+}
+
+.svg-stroke-order svg {
+    width: 100%;
+    height: 100%;
+}
+
+.svg-stroke-order svg path {
+    stroke: rgba(255, 255, 255, 0.75) !important;
+    fill: none !important;
+}
+
+.svg-stroke-order svg text {
+    fill: rgba(252, 191, 73, 0.9) !important;
+    font-size: 8px !important;
+    font-family: system-ui !important;
+}
