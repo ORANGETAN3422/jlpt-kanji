@@ -27,6 +27,30 @@
         learned: levels.reduce((s, l) => s + l.learned, 0),
     });
 
+    let importCode = $state('');
+    let importOpen = $state(false);
+    let copyLabel = $state('Export');
+
+    function exportData() {
+        const code = btoa(encodeURIComponent(JSON.stringify(getLearnedKanji())));
+        navigator.clipboard.writeText(code);
+        copyLabel = 'Copied!';
+        setTimeout(() => copyLabel = 'Export', 2000);
+    }
+
+    function importData() {
+        try {
+            const kanji: string[] = JSON.parse(decodeURIComponent(atob(importCode.trim())));
+            if (!Array.isArray(kanji)) throw new Error();
+            localStorage.setItem('learnedKanji', JSON.stringify(kanji));
+            learned = kanji;
+            importCode = '';
+            importOpen = false;
+        } catch {
+            importCode = '';
+        }
+    }
+
     function jlptColour(n: number): string {
         switch (n) {
             case 1: return '#00b197';
@@ -40,8 +64,39 @@
 </script>
 
 <div class="max-w-2xl mx-auto py-8">
-    <h1 class="text-amber-300/80 text-3xl font-semibold tracking-widest uppercase mb-2">JLPT Kanji</h1>
-    <p class="text-slate-400 text-sm mb-10">Track your kanji progress across all JLPT levels.</p>
+    <div class="flex items-start justify-between mb-10">
+        <div>
+            <h1 class="text-amber-300/80 text-3xl font-semibold tracking-widest uppercase mb-2">JLPT Kanji</h1>
+            <p class="text-slate-400 text-sm">Track your kanji progress across all JLPT levels.</p>
+        </div>
+        <div class="flex flex-col items-end gap-2 mt-1">
+            <div class="flex gap-2">
+                <button
+                    onclick={exportData}
+                    class="text-xs px-3 py-1.5 rounded-lg border border-slate-600 bg-slate-700/50 text-slate-300 hover:border-amber-300/40 hover:text-slate-100 transition-colors"
+                >{copyLabel}</button>
+                <button
+                    onclick={() => importOpen = !importOpen}
+                    class="text-xs px-3 py-1.5 rounded-lg border transition-colors {importOpen ? 'border-amber-400/60 bg-amber-600/20 text-amber-300' : 'border-slate-600 bg-slate-700/50 text-slate-300 hover:border-amber-300/40 hover:text-slate-100'}"
+                >Import</button>
+            </div>
+            {#if importOpen}
+                <div class="flex gap-2">
+                    <input
+                        bind:value={importCode}
+                        placeholder="Paste code…"
+                        class="text-xs px-3 py-1.5 rounded-lg border border-slate-600 bg-slate-800 text-slate-300 placeholder-slate-600 focus:outline-none focus:border-amber-300/40 w-48"
+                        onkeydown={e => e.key === 'Enter' && importData()}
+                    />
+                    <button
+                        onclick={importData}
+                        disabled={!importCode.trim()}
+                        class="text-xs px-3 py-1.5 rounded-lg border border-amber-400/40 bg-amber-600/20 text-amber-300 hover:border-amber-400/70 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+                    >Apply</button>
+                </div>
+            {/if}
+        </div>
+    </div>
 
     <!-- total -->
     <div class="bg-slate-700/50 border border-amber-300/20 rounded-xl p-6 mb-6">
