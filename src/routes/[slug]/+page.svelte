@@ -34,6 +34,14 @@
         else getInfo(data.kanji[0], true);
     });
 
+    function navigate(dir: 1 | -1) {
+        const index = filteredKanji.indexOf(selectedKanji ?? '');
+        if (index === -1) return;
+        const next = (index + dir + filteredKanji.length) % filteredKanji.length;
+        currentPage = Math.floor(next / pageSize);
+        getInfo(filteredKanji[next]);
+    }
+
     async function getInfo(kanji: string, updateUrl = true) {
         try {
             loadingKanji = true;
@@ -54,6 +62,8 @@
         }
     }
 </script>
+
+<svelte:window onkeydown={e => { if (e.key === 'ArrowLeft') navigate(-1); else if (e.key === 'ArrowRight') navigate(1); }} />
 
 <svelte:head>
     <title>{data.slug.slice(0, 4).toUpperCase() + ' N' + data.slug.slice(data.slug.length - 1)} Kanji — JLPT Kanji</title>
