@@ -11,6 +11,7 @@
 	let queueIndex = $state(0);
 	let remaining = $state<string[]>([]);
 	let flipped = $state(false);
+	let done = $state(false);
 	let loading = $state(false);
 	let currentKanji: kanjiInfo | null = $state(null);
 	let learned = $state(false);
@@ -133,6 +134,7 @@
 		flipped = false;
 		setTimeout(() => {
 			if (queueIndex < queue.length - 1) queueIndex++;
+			else done = true;
 		}, 400);
 	}
 
@@ -229,7 +231,17 @@
 
 	<!-- card section -->
 	<div class="flex min-h-0 flex-1 items-center justify-center px-6 py-6">
-		{#if queue.length === 0}
+		{#if done}
+			<div class="text-center flex flex-col items-center gap-4">
+				<p class="text-4xl">🎉</p>
+				<p class="text-white font-medium text-lg">All caught up!</p>
+				<p class="text-slate-400 text-sm">You've reviewed all {kanjiList.length} kanji and rated everything as easy.</p>
+				<button
+					onclick={onClose}
+					class="mt-2 px-5 py-2 rounded-xl border text-sm border-amber-400/40 bg-amber-600/20 text-amber-300 hover:border-amber-400/70 transition-colors"
+				>Close session</button>
+			</div>
+		{:else if queue.length === 0}
 			<div class="text-center">
 				<p class="mb-1 text-slate-400">No kanji to review.</p>
 				<p class="text-sm text-slate-600">Turn off "Exclude learned" to see all cards.</p>
