@@ -1,6 +1,7 @@
 <script lang="ts">
     import KanjiCard from "$lib/components/KanjiCard.svelte";
     import KanjiWords from "$lib/components/KanjiWords.svelte";
+    import Flashcard from "$lib/components/Flashcard.svelte";
 
 	import type { jlptKanjiResponse, kanjiInfo } from "$lib/types";
     import { getLearnedKanji } from "$lib/storage";
@@ -19,6 +20,7 @@
     let containerWidth = $state(0);
     let currentPage = $state(0);
     let hideLearned = $state(false);
+    let flashcardOpen = $state(false);
 
     const CARD_WIDTH = 52;
     const TARGET_ROWS = 8;
@@ -78,7 +80,15 @@
             ? 'bg-slate-700/50 border-slate-500 text-slate-400 hover:border-slate-300'
             : 'bg-sky-900/40 border-sky-700/60 text-sky-400 hover:border-sky-600'}"
     >{hideLearned ? 'Show learned' : 'Hide learned'}</button>
+    <button
+        onclick={() => flashcardOpen = true}
+        class="text-xs px-2.5 py-1 rounded-lg border transition-colors bg-amber-600/20 border-amber-500/40 text-amber-300 hover:border-amber-400/70 hover:bg-amber-600/30"
+    >Flashcards</button>
 </div>
+
+{#if flashcardOpen}
+    <Flashcard kanjiList={data.kanji} onClose={() => flashcardOpen = false} />
+{/if}
 <div class="flex flex-wrap gap-2" bind:clientWidth={containerWidth}>
 {#each visibleKanji as k: string (k)}
     <button

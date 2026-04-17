@@ -16,3 +16,4 @@ TODO:
     - add the svg thing to credits
     - link repo at credits
     - hover over kanji for details in word view
+    - review cards (maybe)
