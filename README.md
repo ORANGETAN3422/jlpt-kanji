@@ -8,12 +8,13 @@ Powered by [kanjiapi.dev](https://kanjiapi.dev/), [JLPT Vocabulary Api](https://
 
 Built with [Svelte](https://svelte.dev/), [SvelteKit](https://kit.svelte.dev/) and [tailwindcss](https://tailwindcss.com)
 
-TODO:
-    - change colour of current kanji in word list
-    - search for kanji by reading (kanjiapi)
-    - arrow key navigation to next kanji
-    - keybind to mark as learned (maybe)
-    - add the svg thing to credits
+## TODO
+
+    - change colour of current kanji in word list 
+    - search for kanji by reading (kanjiapi) 
+    - arrow key navigation to next kanji 
+    - keybind to mark as learned (maybe) 
+    - add the svg thing to credits 
     - link repo at credits
-    - hover over kanji for details in word view
-    - review cards (maybe)
+    - hover over kanji for details in word view 
+    - quiz button
