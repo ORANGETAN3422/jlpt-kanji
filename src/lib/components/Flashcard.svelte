@@ -134,7 +134,7 @@
 		setTimeout(() => {
 			if (queueIndex < queue.length - 1) queueIndex++;
 			else done = true;
-		}, 120);
+		}, 100);
 	}
 
 	function toggleLearned() {
