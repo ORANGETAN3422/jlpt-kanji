@@ -130,12 +130,11 @@
 		const next = pickWeighted();
 		if (next) queue.push(next);
 
-		// flip back first, then advance after the animation finishes
 		flipped = false;
 		setTimeout(() => {
 			if (queueIndex < queue.length - 1) queueIndex++;
 			else done = true;
-		}, 400);
+		}, 200);
 	}
 
 	function toggleLearned() {
