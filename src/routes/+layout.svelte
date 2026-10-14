@@ -32,7 +32,7 @@
 >
 	<div class="flex items-center">
 		<a href={resolve('/')} class="text-sm font-semibold tracking-widest text-amber-300/80 uppercase"
-			>JLPT Kanji</a
+			>Home</a
 		>
 		{#if pathname !== '/'}
 			<span class="mx-3 text-slate-600">/</span>

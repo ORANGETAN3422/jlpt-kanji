@@ -80,7 +80,6 @@
 			<h1 class="mb-2 text-3xl font-semibold tracking-widest text-amber-300/80 uppercase">
 				JLPT Kanji
 			</h1>
-			<p class="text-sm text-slate-400">Track your kanji progress across all JLPT levels.</p>
 		</div>
 		<div class="mt-1 flex flex-col items-end gap-2">
 			<div class="flex gap-2">
