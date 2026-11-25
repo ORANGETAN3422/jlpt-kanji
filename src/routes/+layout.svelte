@@ -10,14 +10,14 @@
 
 <svelte:head>
 	<link rel="icon" href={favicon} />
-	<title>JLPT Kanji</title>
+	<title>Kanji Tracker</title>
 	<meta
 		name="description"
 		content="Track your kanji progress across all JLPT levels. View stroke order, readings, meanings and example words."
 	/>
 
 	<!-- Open Graph -->
-	<meta property="og:title" content="JLPT Kanji" />
+	<meta property="og:title" content="Kanji Tracker" />
 	<meta
 		property="og:description"
 		content="Track your kanji progress across all JLPT levels. View stroke order, readings, meanings and example words."
