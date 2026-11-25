@@ -78,7 +78,7 @@
 	<div class="mb-10 flex items-start justify-between">
 		<div>
 			<h1 class="mb-2 text-3xl font-semibold tracking-widest text-amber-300/80 uppercase">
-				JLPT Kanji
+				Kanji Tracker
 			</h1>
 		</div>
 		<div class="mt-1 flex flex-col items-end gap-2">
